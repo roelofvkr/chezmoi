@@ -163,11 +163,6 @@ func (c *Config) runEditCmd(fs vfs.FS, args []string) error {
 					c.edit.prompt = false
 				}
 			}
-			applyOptions := chezmoi.ApplyOptions{
-				DestDir: ts.DestDir,
-				Ignore:  ts.TargetIgnore.Match,
-				Umask:   ts.Umask,
-			}
 			if err := entry.Apply(readOnlyFS, applyMutator, &applyOptions); err != nil {
 				return err
 			}
