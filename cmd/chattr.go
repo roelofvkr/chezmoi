@@ -12,6 +12,9 @@ import (
 	vfs "github.com/twpayne/go-vfs"
 )
 
+// FIXME support run attribute
+// FIXME support once attribute
+
 var chattrCmd = &cobra.Command{
 	Use:     "chattr attributes targets...",
 	Args:    cobra.MinimumNArgs(2),

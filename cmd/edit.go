@@ -135,8 +135,10 @@ func (c *Config) runEditCmd(fs vfs.FS, args []string) error {
 	applyMutator := c.getDefaultMutator(fs)
 	applyOptions := chezmoi.ApplyOptions{
 		DestDir: ts.DestDir,
+		DryRun:  c.DryRun,
 		Ignore:  ts.TargetIgnore.Match,
 		Umask:   ts.Umask,
+		Verbose: c.Verbose,
 	}
 	for i, entry := range entries {
 		anyMutator := chezmoi.NewAnyMutator(chezmoi.NullMutator)

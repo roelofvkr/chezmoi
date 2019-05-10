@@ -174,11 +174,13 @@ special, and are collectively referred to as "attributes":
 
 | Prefix/suffix        | Effect                                                                            |
 | -------------------- | ----------------------------------------------------------------------------------|
+| `always_` prefix     | Run script on every application.                                                  |
 | `encrypted_` prefix  | Encrypt the file in the source state.                                             |
 | `private_` prefix    | Remove all group and world permissions from the target file or directory.         |
 | `empty_` prefix      | Ensure the file exists, even if is empty. By default, empty files are removed.    |
 | `exact_` prefix      | Remove anything not managed by chezmoi.                                           |
 | `executable_` prefix | Add executable permissions to the target file.                                    |
+| `run_` prefix        | Treat the contents as a script to run.                                            |
 | `symlink_` prefix    | Create a symlink instead of a regular file.                                       |
 | `dot_` prefix        | Rename to use a leading dot, e.g. `dot_foo` becomes `.foo`.                       |
 | `.tmpl` suffix       | Treat the contents of the source file as a template.                              |
@@ -192,6 +194,7 @@ Different target types allow different prefixes and suffixes:
 | ------------- | ------------------------------------------------------------------ |
 | Directory     | `exact_`, `private_`, `dot_`                                       |
 | Regular file  | `encrypted_`, `private_`, `empty_`, `executable_`, `dot_`, `.tmpl` |
+| Script        | `run_`, `always_`, `.tmpl`                                         |
 | Symbolic link | `symlink_`, `dot_`, `.tmpl`                                        |
 
 ## Special files

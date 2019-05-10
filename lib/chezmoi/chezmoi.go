@@ -13,13 +13,15 @@ import (
 
 // Suffixes and prefixes.
 const (
-	symlinkPrefix    = "symlink_"
-	privatePrefix    = "private_"
+	dotPrefix        = "dot_"
 	emptyPrefix      = "empty_"
 	encryptedPrefix  = "encrypted_"
 	exactPrefix      = "exact_"
 	executablePrefix = "executable_"
-	dotPrefix        = "dot_"
+	oncePrefix       = "once_"
+	privatePrefix    = "private_"
+	runPrefix        = "run_"
+	symlinkPrefix    = "symlink_"
 	TemplateSuffix   = ".tmpl"
 )
 
@@ -31,9 +33,15 @@ type templateFuncError struct {
 
 // An ApplyOptions is a big ball of mud for things that affect Entry.Apply.
 type ApplyOptions struct {
-	DestDir string
-	Ignore  func(string) bool
+	DestDir     string
+	DryRun      bool
+	Ignore      func(string) bool
+	ScriptState interface {
+		GetScriptRanState([]byte) (bool, error)
+		SetScriptRanState([]byte) error
+	}
 	Umask   os.FileMode
+	Verbose bool
 }
 
 // An Entry is either a Dir, a File, or a Symlink.
@@ -47,8 +55,9 @@ type Entry interface {
 }
 
 type parsedSourceFilePath struct {
-	FileAttributes
-	dirAttributes []DirAttributes
+	dirAttributes    []DirAttributes
+	fileAttributes   *FileAttributes
+	scriptAttributes *ScriptAttributes
 }
 
 // ReturnTemplateFuncError causes template execution to return an error.
@@ -86,10 +95,18 @@ func parseDirNameComponents(components []string) []DirAttributes {
 func parseSourceFilePath(path string) parsedSourceFilePath {
 	components := splitPathList(path)
 	das := parseDirNameComponents(components[0 : len(components)-1])
+	sourceName := components[len(components)-1]
+	if strings.HasPrefix(sourceName, runPrefix) {
+		sa := ParseScriptAttributes(sourceName)
+		return parsedSourceFilePath{
+			dirAttributes:    das,
+			scriptAttributes: &sa,
+		}
+	}
 	fa := ParseFileAttributes(components[len(components)-1])
 	return parsedSourceFilePath{
-		FileAttributes: fa,
 		dirAttributes:  das,
+		fileAttributes: &fa,
 	}
 }
 

@@ -139,8 +139,10 @@ func (c *Config) applyArgs(fs vfs.FS, args []string, mutator chezmoi.Mutator) er
 	}
 	applyOptions := chezmoi.ApplyOptions{
 		DestDir: ts.DestDir,
+		DryRun:  c.DryRun,
 		Ignore:  ts.TargetIgnore.Match,
 		Umask:   ts.Umask,
+		Verbose: c.Verbose,
 	}
 	for _, entry := range entries {
 		if err := entry.Apply(fs, mutator, &applyOptions); err != nil {
