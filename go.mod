@@ -26,7 +26,7 @@ require (
 	github.com/spf13/viper v1.3.1
 	github.com/stretchr/objx v0.2.0 // indirect
 	github.com/stretchr/testify v1.3.0
-	github.com/twpayne/go-shell v0.0.1
+	github.com/twpayne/go-shell v0.0.2
 	github.com/twpayne/go-vfs v1.0.6
 	github.com/twpayne/go-vfsafero v1.0.0
 	github.com/twpayne/go-xdg/v3 v3.1.0

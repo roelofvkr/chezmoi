@@ -78,6 +78,8 @@ github.com/twpayne/go-difflib v1.2.1 h1:ypoyI4LwrjSBRzuvBph0Iu8Z8tPG4G+D706ym4RX
 github.com/twpayne/go-difflib v1.2.1/go.mod h1:yDLRCpF455E1uC+kFIFhA4qoJuKg9K2uyEx1/OBNnnw=
 github.com/twpayne/go-shell v0.0.1 h1:Ako3cUeuULhWadYk37jM3FlJ8lkSSW4INBjYj9K60Gw=
 github.com/twpayne/go-shell v0.0.1/go.mod h1:QCjEvdZndTuPObd+11NYAI1UeNLSuGZVxJ+67Wl+IU4=
+github.com/twpayne/go-shell v0.0.2 h1:sZH588mQpnR7422kS4bhqydn8JFb7HCnAcqaDNy98y0=
+github.com/twpayne/go-shell v0.0.2/go.mod h1:H/gzux0DOH5jsjQSHXs6rs2Onxy+V4j6ycZTOulC0l8=
 github.com/twpayne/go-vfs v1.0.1/go.mod h1:OIXA6zWkcn7Jk46XT7ceYqBMeIkfzJ8WOBhGJM0W4y8=
 github.com/twpayne/go-vfs v1.0.5 h1:i45a6Ykg/asDB94fHH5OmScCQHFx/P9A//9M5dfXwQk=
 github.com/twpayne/go-vfs v1.0.5/go.mod h1:OIXA6zWkcn7Jk46XT7ceYqBMeIkfzJ8WOBhGJM0W4y8=

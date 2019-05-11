@@ -31,6 +31,22 @@ builds:
     goarch: 386
   - goos: linux
     goarch: amd64
+- id: chezmoi-win
+  binary: chezmoi
+  env:
+  - CGO_ENABLED=0
+  flags:
+  - -tags=noupgrade
+  ldflags: "-s -w -X github.com/twpayne/chezmoi/cmd.VersionStr={{ .Version }} -X github.com/twpayne/chezmoi/cmd.Commit={{ .Commit }} -X github.com/twpayne/chezmoi/cmd.Date={{ .Date }}"
+  goos:
+  - windows
+  goarch:
+  - 386
+  - amd64
+  - arm
+  - arm64
+  - ppc64
+  - ppc64le
 - id: chezmoi-cgo
   binary: chezmoi
   ldflags: "-s -w -X github.com/twpayne/chezmoi/cmd.VersionStr={{ .Version }} -X github.com/twpayne/chezmoi/cmd.Commit={{ .Commit }} -X github.com/twpayne/chezmoi/cmd.Date={{ .Date }}"
